@@ -106,6 +106,8 @@ to perform an arithmetic operation on a `int` object and a `str` object.
 ### KeyError
 
 ## Stock sentences for reuse
+This code outputs: 
+
 On line 0 a variable `blank` is initialized to the value `value`. 
 
 On line 0 the variable `blank` is reassigned to a new object: `new`. 
@@ -147,3 +149,31 @@ the global variable `my_list` which was mutated by the `modify_list` function ca
 and mutates the list passed by object reference. 
 
 The concepts covered here are variable scope, mutation vs reassignment, list methods, and interpolation
+
+#### Q2
+Analyze the following code:
+```
+def modify_nested(nested):
+    nested[0].append(4)
+    nested[1] = 20
+    nested = [5, 6, 7]
+    print(f"Inside function: {nested}")
+
+my_nested = [[1, 2, 3], 10]
+modify_nested(my_nested)
+print(f"Outside function: {my_nested}")
+```
+What will be the output? Explain how pass by object reference works with nested mutable objects.
+
+This code will output: `Inside function: [5, 6, 7]` and `Outside function: [[1, 2, 3, 4], 20]`
+
+The nested list object initialized to the variable `my_nested` on line 7 passed
+by object reference to the `modify_nested` function. On lines 2 and 3 the parameter `nested`
+is referencing the same object as `my_nested` and mutating the object. Then on line 4
+a new local variable `nested` is initialized with a new list object `[5, 6, 7]`.
+It is this new list object that is passed by object reference to the print function on line 5.
+
+On line 9 the `print` function prints the mutated nested list object that is referenced
+by the global variable `my_nested`. 
+
+This covers the concepts: variable scope, parameters vs local variables, pass by object reference, and the mutability of dictionaries. 
